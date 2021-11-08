@@ -3,12 +3,14 @@ package com.bookservice.controller;
 import com.bookservice.entity.Book;
 import com.bookservice.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@RefreshScope
 public class BookRestController {
     @Autowired
     private BookService bookService;
