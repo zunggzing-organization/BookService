@@ -33,9 +33,7 @@ public class BookImpl implements BookService{
     }
 
     @Override
-
     @RateLimiter(name = "basic", fallbackMethod = "fallMethodRateLimiter")
-
     public Book getBook(Long id) {
         log.info(LocalDateTime.now() + "IN GET FACULTY BY ID");
         return bookRepository.findById(id).get();
@@ -46,7 +44,7 @@ public class BookImpl implements BookService{
         bookRepository.deleteById(id);
 
     }
-    public Book fallMethodRateLimiter(int id, RequestNotPermitted rnp) {
+    public Book fallMethodRateLimiter(Long id, RequestNotPermitted rnp) {
         log.info("Request Not Permitted By Many Request");
         return null;
     }
