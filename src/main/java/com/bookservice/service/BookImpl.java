@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Service
 @Slf4j
+
 public class BookImpl implements BookService{
     @Autowired
     private BookRepository bookRepository;
@@ -31,7 +32,9 @@ public class BookImpl implements BookService{
     }
 
     @Override
+
     @Retry(name = "basic")
+
     public Book getBook(Long id) {
         log.info(LocalDateTime.now() + "IN GET FACULTY BY ID");
         return bookRepository.findById(id).get();
