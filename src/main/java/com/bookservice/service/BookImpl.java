@@ -7,6 +7,7 @@ import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -34,6 +35,7 @@ public class BookImpl implements BookService{
 
     @Override
     @RateLimiter(name = "basic", fallbackMethod = "fallMethodRateLimiter")
+    @Cacheable("book")
     public Book getBook(Long id) {
         log.info(LocalDateTime.now() + "IN GET FACULTY BY ID");
         return bookRepository.findById(id).get();
